@@ -8,7 +8,7 @@ import numpy as np
 import pymongo
 load_dotenv()
 
-from networksecurity.exception.exception import custom_exception
+from DS_Main_Components.exception.exception import custom_exception
 
 MONGO_DB = os.getenv('MONGO_DB_URL')
 ca=certifi.where()
@@ -39,9 +39,8 @@ class ETL_DataPusher():
 if __name__ == "__main__":
     FILE_PATH = "Network_Data\Indian_Agriculture_Dataset.csv"
     DATABASE = "AdhiMachineLearning"
-    collection = "ETLCollection"
+    collection = "Indian_Agriculture_Dataset"
     etl_datapusher_obj = ETL_DataPusher()
     records = etl_datapusher_obj.csv_to_json(file_path=FILE_PATH)
     etl_datapusher_obj.mongodb_uploader(records=records,database_name=DATABASE,collection_name=collection)
     print("process completed")
-
